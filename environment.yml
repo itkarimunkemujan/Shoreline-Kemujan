@@ -1,0 +1,21 @@
+name: shoreline-kemujan 
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - geopandas
+  - rasterio
+  - shapely
+  - scikit-image
+  - opencv
+  - matplotlib
+  - jupyter
+  - ipykernel
+  - pip
+  - pip:
+      - earthengine-api
+      - geemap
+      - pyTMD

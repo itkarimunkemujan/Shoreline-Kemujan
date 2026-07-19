@@ -1,0 +1,17 @@
+
+KEPUTUSAN 1 — Index darat-air:
+  NDWI vs MNDWI disagreement (dgn threshold Otsu masing2): 0.7% dari AOI
+  → Disagreement kecil, pilihan index tidak kritis; MNDWI tetap direkomendasikan (tahan sedimen/turbid, standar CoastSat)
+
+KEPUTUSAN 2 — Threshold:
+  Otsu NDWI  = 0.094 | Otsu MNDWI = 0.094
+  → Pakai nilai Otsu (bukan default 0) dan CATAT sebagai keputusan berbasis data.
+  → Note: threshold ini dari composite kemarau 2024; perlu dicek stabilitasnya
+    di 1-2 tahun lain sebelum dipakai global di semua scene (next step preprocessing).
+
+KEPUTUSAN 3 — Input ConvLSTM:
+  Kelengkapan bulanan: 59.4% | BERMASALAH — gap besar, monthly sequence tidak realistis; pertimbangkan quarterly/seasonal composite
+
+KEPUTUSAN 4 — Yang dikonfirmasi TIDAK dilanjutkan:
+  Bathymetry (akses gagal + resolusi kasar), CHL_proxy (sensor tidak sesuai).
+  Mangrove & NDTI → lanjut sebagai layer konteks/diskusi, bukan input model.

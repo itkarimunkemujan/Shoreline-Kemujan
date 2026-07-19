@@ -1,0 +1,10 @@
+
+1. LOSS FUNCTION : Imbalance ringan (1.0:1) — Dice/BCE standar kemungkinan cukup; Tversky tetap boleh sebagai eksperimen ablation, bukan kebutuhan.
+2. ARSITEKTUR    : Garis pantai relatif sederhana — ConvLSTM standar kemungkinan cukup; mulai dari baseline, jangan over-engineer.
+3. TIDAL         : Zona transisi sempit (pantai curam) — dampak pasut lebih kecil, tapi koreksi tetap dilakukan sesuai desain metodologi.
+4. URUTAN EKSPERIMEN MODELING (disiplin, jangan loncat):
+   a. Baseline: ConvLSTM (+U-Net decoder jika kompleksitas tinggi), Dice loss
+   b. Hindcast: train 2018-2022 (seasonal composite), predict 2023-2024
+   c. Bandingkan RMSE/IoU vs baseline LRR
+   d. HANYA jika (c) underperform: ablation Tversky, lalu arsitektur alternatif
+   → Setiap langkah dicatat; negative result = temuan valid, bukan kegagalan.

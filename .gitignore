@@ -1,0 +1,38 @@
+# --- Python hygiene ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# --- OS / editor cruft ---
+.DS_Store
+Thumbs.db
+
+# --- Secrets ---
+.env
+
+# --- External / downloaded reference data ---
+# pyTMD tide model constants (EOT20, ~4.3GB) — downloaded on demand, not project output.
+models/tide_models/
+
+# --- Training run artifacts (regenerable by re-running src/model/train.py) ---
+logs/*.log
+logs/*.csv
+data/output/logs/
+*.h5
+
+# --- TensorBoard event files (wherever they land) ---
+*.tfevents.*
+
+# --- Redundant archives (dupes of already-tracked directories) ---
+*.zip
+
+# --- Large regenerable notebook plot exports (re-run the notebook to rebuild) ---
+notebooks/outputs/*.png
+
+# NOTE: .npy / .npz training data under data/ is intentionally NOT ignored —
+# those files are small and are the actual training artifacts we want tracked.

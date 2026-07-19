@@ -1,0 +1,11 @@
+{
+  "Titik_02": {"coord": [110.4666041, -5.7915568], "buffer_m": 2000, "priority": "tbd", "note": "erosion signal"},
+  "Titik_07": {"coord": [110.4930955, -5.8154436], "buffer_m": 2000, "priority": "tbd", "note": "erosion signal"},
+  "Titik_19": {"coord": [110.5085107, -5.8205339], "buffer_m": 2000, "priority": "tbd", "note": "pulau cilik"},
+  "Titik_11": {"coord": [110.4684736, -5.8309304], "buffer_m": 2000, "priority": "tbd", "note": ""},
+  "Titik_05": {"coord": [110.4500360, -5.8134327], "buffer_m": 2000, "priority": "tbd", "note": ""},
+  "Titik_04": {"coord": [110.4796091, -5.7724370], "buffer_m": 2000, "priority": "tbd", "note": ""},
+  "Titik_09": {"coord": [110.4674130, -5.8075204], "buffer_m": 2000, "priority": "tbd", "note": ""},
+  "Titik_06": {"coord": [110.4802625, -5.7989676], "buffer_m": 2000, "priority": "tbd", "note": ""},
+  "Titik_10": {"coord": [110.4832327, -5.8281419], "buffer_m": 2000, "priority": "tbd", "note": ""}
+}

@@ -1,0 +1,122 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Titik_02",
+        "buffer_m": 1500,
+        "priority": "wajib",
+        "note": "erosion signal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.4666041, -5.7915568]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Titik_07",
+        "buffer_m": 1500,
+        "priority": "wajib",
+        "note": "erosion signal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.4930955, -5.8154436]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Titik_19",
+        "buffer_m": 1500,
+        "priority": "wajib",
+        "note": "pulau cilik"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.5085107, -5.8205339]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Titik_11",
+        "buffer_m": 1500,
+        "priority": "fill",
+        "note": "farthest-point sampling: representasi selatan-barat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.4684736, -5.8309304]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Titik_05",
+        "buffer_m": 1500,
+        "priority": "fill",
+        "note": "farthest-point sampling: representasi barat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.450036, -5.8134327]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Titik_04",
+        "buffer_m": 1500,
+        "priority": "fill",
+        "note": "farthest-point sampling: representasi utara-timur"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.4796091, -5.772437]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Titik_09",
+        "buffer_m": 1500,
+        "priority": "fill",
+        "note": "farthest-point sampling: tengah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.467413, -5.8075204]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Titik_06",
+        "buffer_m": 1500,
+        "priority": "fill",
+        "note": "farthest-point sampling: dekat Titik_04, >1.7km dari titik lain"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.4802625, -5.7989676]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Titik_10",
+        "buffer_m": 1500,
+        "priority": "fill",
+        "note": "farthest-point sampling: representasi selatan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.4832327, -5.8281419]
+      }
+    }
+  ]
+}
