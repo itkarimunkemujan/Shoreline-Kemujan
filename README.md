@@ -4,9 +4,9 @@ Pipeline otomatis untuk recalculate prediksi perubahan garis pantai Kemujan/Kari
 dan push hasilnya ke website Pokdarwis (Abrasion Monitoring Page). Proker KKN-PPM UGM,
 Desa Kemujan, Karimunjawa — untuk BTN/TNKJ dan Pokdarwis Karang Tangguh.
 
-> Status progres, keputusan metodologis, known limitations, dan open questions
+<!-- > Status progres, keputusan metodologis, known limitations, dan open questions
 > ada di [`STATUS.md`](./STATUS.md) — dipisah dari README supaya README fokus
-> ke cara pakai/develop, bukan catatan kerja.
+> ke cara pakai/develop, bukan catatan kerja. -->
 
 ## Index
 
@@ -161,6 +161,11 @@ static site-nya sendiri. Repo ini tidak deploy apa pun secara langsung.
 Benedictus Erwin Widianto — KKN-PPM UGM, Dusun Telaga, Kemujan, Karimunjawa,
 di bawah DPL Dr. Desy Putri Handayani, S.Pi. Kolaborasi dengan Pokdarwis
 Karang Tangguh, BTN/TNKJ.
+
+## Infrastructure
+
+Pipeline data berjalan otomatis lewat GitHub Actions (tanpa infra cloud
+tambahan seperti AWS). Detail arsitektur lengkap: [`docs/infra.md`](docs/infra.md)
 
 ## License
 
