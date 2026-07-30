@@ -1,0 +1,8 @@
+earthengine-api
+numpy
+scipy
+shapely
+scikit-image
+requests
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
