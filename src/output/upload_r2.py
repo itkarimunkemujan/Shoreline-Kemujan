@@ -86,10 +86,10 @@ def _run_id(run_dir: str, run_utc: str) -> str:
     return "run_" + run_utc[:10].replace("-", "")
 
 
-def _write_json_to_parquet(duck: duckdb.DuckDBPyConnection, path: str, out_key: str) -> str | None:
-    """Flatten a GeoJSON FeatureCollection into one Parquet file via DuckDB
-    (properties->columns, geometry->lon/lat-derived rows). Returns the relative
-    object key written, or None if the FeatureCollection is empty."""
+def _write_json_to_parquet(duck: duckdb.DuckDBPyConnection, path: str) -> str | None:
+    """Flatten a GeoJSON FeatureCollection into one local Parquet file via DuckDB
+    (properties->columns, geometry->lon/lat-derived rows). Returns the local
+    Parquet path, or None if the FeatureCollection is empty."""
     with open(path, encoding="utf-8") as f:
         fc = json.load(f)
     features = fc.get("features", [])
@@ -115,13 +115,15 @@ def _write_json_to_parquet(duck: duckdb.DuckDBPyConnection, path: str, out_key: 
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as f:
             json.dump(rows, f)
+        parquet_fd, parquet_tmp = tempfile.mkstemp(suffix=".parquet")
+        os.close(parquet_fd)
         duck.execute(
             f"COPY (SELECT * FROM read_json_auto('{tmp.replace(os.sep, '/')}')) "
-            f"TO '{out_key}' (FORMAT PARQUET)"
+            f"TO '{parquet_tmp.replace(os.sep, '/')}' (FORMAT PARQUET)"
         )
     finally:
         os.unlink(tmp)
-    return out_key
+    return parquet_tmp
 
 
 def run_upload_r2(run_dir: str) -> dict:
@@ -185,10 +187,15 @@ def run_upload_r2(run_dir: str) -> dict:
             if not os.path.exists(local):
                 continue
             out_key = f"{prefix}/parquet/{json_name.replace('.geojson', '')}.parquet"
-            written = _write_json_to_parquet(duck, local, f"s3://{bucket}/{out_key}")
-            if written:
-                manifest["files"].setdefault("parquet", {})[json_name] = {"key": out_key}
-                print(f"Parquet {json_name} -> s3://{bucket}/{out_key}")
+            parquet_tmp = _write_json_to_parquet(duck, local)
+            if parquet_tmp:
+                try:
+                    with fs.open(f"{bucket}/{out_key}", "wb") as dst, open(parquet_tmp, "rb") as src:
+                        dst.write(src.read())
+                    manifest["files"].setdefault("parquet", {})[json_name] = {"key": out_key}
+                    print(f"Parquet {json_name} -> s3://{bucket}/{out_key}")
+                finally:
+                    os.unlink(parquet_tmp)
 
         # scalar summary for the promote step's DuckDB query
         metrics_path = os.path.join(run_dir, "metrics.json")
