@@ -35,4 +35,7 @@ jobs:
         run: |
           python -c "import json; d=json.load(open('config/thresholds.json')); assert len(d['thresholds'])>=1; print('thresholds.json OK:', len(d['thresholds']), 'AOIs')"
           python -c "import json; json.load(open('config/aoi_points.geojson')); print('aoi_points.geojson OK')"
-          python -c "import json; m=json.load(open('models/model_meta.json')); assert set(['IN_CH','LOOKBACK','BASE_CH'])<=set(m); print('model_meta.json OK')"
+          # model_meta.json is intentionally NOT validated here: model artifacts
+          # are gitignored and delivered via GitHub Release (model-vN), so this
+          # file never exists in a checkout. Its schema is validated at pipeline
+          # runtime (recalculate.yml downloads it, predict.py reads it).
