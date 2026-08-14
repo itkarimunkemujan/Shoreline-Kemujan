@@ -4,15 +4,11 @@ Pipeline otomatis untuk recalculate prediksi perubahan garis pantai Kemujan/Kari
 dan push hasilnya ke website Pokdarwis (Abrasion Monitoring Page, `tourism-kemujan`). Proker
 KKN-PPM UGM, Desa Kemujan, Karimunjawa — untuk BTN/TNKJ dan Pokdarwis Karang Tangguh.
 
-> **Status per 2026-08-13: pipeline (Prefect-based) siap run end-to-end.**
-> Warehouse R2+DuckDB aktif; staging (`development`) → production (`production`)
-> via promote workflow otomatis (cron harian). Lihat [Status & Prasyarat Sebelum
-> Run Pertama](#status--prasyarat-sebelum-run-pertama) untuk checklist lengkapnya.
+![Pipeline diagram](img/pipeline_simple.png)
 
 ## Index
 
 - [About](#about)
-- [Status & Prasyarat Sebelum Run Pertama](#status--prasyarat-sebelum-run-pertama)
 - [Architecture](#architecture)
 - [Usage](#usage)
   - [Installation](#installation)
@@ -42,32 +38,7 @@ Prefect Cloud (dashboard) sifatnya opsional, cuma aktif kalau secret
 `PREFECT_API_KEY`/`PREFECT_API_URL` di-set.
 
 Training model dilakukan manual di Colab/Kaggle GPU, terpisah dari cron — checkpoint
-di-promote ke Actions lewat GitHub Release (lihat bagian Status di bawah).
-
-## Status & Prasyarat Sebelum Run Pertama
-
-Pipeline `src/pipeline.py` (Prefect flow, 6 task: `fetch_composite` → `build_mask` →
-`track_a_predict` → `build_payload` → `push_to_sanity` → `upload_to_r2`) sudah ditulis.
-Sebelum trigger `recalculate.yml` (manual dispatch atau nunggu cron), pastikan checklist
-ini beres:
-
-- [ ] **GitHub Release bertag `model-v1`** — step "download checkpoint" di
-      `recalculate.yml` gagal tanpa ini (berisi `checkpoint.pth` + `model_meta.json`).
-- [ ] **Setup Cloudflare R2 + 4 secrets** (`R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`,
-      `R2_ACCESS_KEY_SECRET`, `R2_BUCKET`) — kalau kosong, task `upload_to_r2` SKIP
-      otomatis (pipeline tetap jalan, cuma warehouse-nya tidak terisi).
-- [ ] **Secrets Sanity** — `SANITY_PROJECT_ID`, `SANITY_API_TOKEN` (token yang sudah
-      di-rotate), `SANITY_DATASET_STAGING=development`, `SANITY_DATASET_PRODUCTION=production`.
-- [ ] **`config/thresholds.json`** — ✅ sudah terisi untuk 9 AOI (dari
-      `manifest['aoi'][name]['threshold_otsu']` run training `20260802_064800`). Stage mask
-      sengaja hard-raise kalau ada AOI yang belum diisi.
-- [ ] **`data/state/` belum ada di disk** (termasuk `lrr_baseline.json` buat Track B) —
-      tanpa ini, `lrrMPerYr`/`lrrProjectedM` di `shorelineForecast` keluar `null`
-      (tidak fatal; cara bikinnya di docstring `load_lrr_baseline()`, `src/output/geojson.py`).
-
-Detail runbook lengkap (resume notebook, export `model_meta.json`, push ke Sanity, cut Release,
-setup Prefect Cloud, trigger + verifikasi) ada di `claude_result16.md` — "Guide: promote
-model/data abrasi ke production".
+di-promote ke Actions lewat GitHub Release (lihat bagian Usage di bawah).
 
 ## Architecture
 
@@ -288,6 +259,7 @@ GitHub Actions + bucket R2.
 
 ## Resources
 
+- [Project Impact](docs/Project_Impact.md) — value framing + roadmap (DE & ML engineering)
 - Suryanti et al. (2025) — SWOT/IFAS shoreline management Karimunjawa
 - Trinida et al. (2024) — prediksi garis pantai 2033/2043
 - Dong et al. (2026, Computers & Geosciences) — object-based adaptive NDWI thresholding (SLIC)
