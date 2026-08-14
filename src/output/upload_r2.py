@@ -154,7 +154,7 @@ def run_upload_r2(run_dir: str) -> dict:
                 print(f"WARN missing {name} -- skipping.", file=sys.stderr)
                 continue
             key = f"{prefix}/{name}"
-            with fs.open(key, "wb") as dst, open(local, "rb") as src:
+            with fs.open(f"{bucket}/{key}", "wb") as dst, open(local, "rb") as src:
                 dst.write(src.read())
             manifest["files"][name] = {
                 "key": key, "size": os.path.getsize(local), "sha256": _sha256(local),
@@ -165,7 +165,7 @@ def run_upload_r2(run_dir: str) -> dict:
             local = os.path.join(run_dir, name)
             if os.path.exists(local):
                 key = f"{prefix}/{name}"
-                with fs.open(key, "wb") as dst, open(local, "rb") as src:
+                with fs.open(f"{bucket}/{key}", "wb") as dst, open(local, "rb") as src:
                     dst.write(src.read())
                 manifest["files"][name] = {
                     "key": key, "size": os.path.getsize(local), "sha256": _sha256(local),
@@ -197,7 +197,7 @@ def run_upload_r2(run_dir: str) -> dict:
         duck.close()
 
     manifest_key = f"{prefix}/run_manifest.json"
-    with fs.open(manifest_key, "wb") as dst:
+    with fs.open(f"{bucket}/{manifest_key}", "wb") as dst:
         dst.write(json.dumps(manifest, indent=2).encode("utf-8"))
     print(f"Manifest -> s3://{bucket}/{manifest_key}")
 
