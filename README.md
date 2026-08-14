@@ -1,9 +1,4 @@
 # shoreline-kemujan-monitoring
-
-Pipeline otomatis untuk recalculate prediksi perubahan garis pantai Kemujan/Karimunjawa
-dan push hasilnya ke website Pokdarwis (Abrasion Monitoring Page, `tourism-kemujan`). Proker
-KKN-PPM UGM, Desa Kemujan, Karimunjawa — untuk BTN/TNKJ dan Pokdarwis Karang Tangguh.
-
 ![Pipeline diagram](img/pipeline_simple.png)
 
 ## Index
