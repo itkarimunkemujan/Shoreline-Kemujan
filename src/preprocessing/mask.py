@@ -66,16 +66,20 @@ def load_history(state_dir: str, aoi: str) -> list[np.ndarray]:
     return [z[k] for k in keys]
 
 
-def update_history(state_dir: str, aoi: str, new_mask: np.ndarray, lookback: int) -> list[np.ndarray]:
+def update_history(state_dir: str, aoi: str, new_mask: np.ndarray, max_frames: int = 64) -> list[np.ndarray]:
+    """Append a new frame to the AOI's rolling mask history, retaining at most
+    `max_frames` frames (the pipeline's archive history, not just the LOOKBACK
+    window -- Track A inference only reads the last `lookback` frames, while the
+    transect/LRR analysis benefits from the full retained series)."""
     os.makedirs(state_dir, exist_ok=True)
     frames = load_history(state_dir, aoi) + [new_mask]
-    frames = frames[-lookback:]
+    frames = frames[-max_frames:]
     np.savez_compressed(history_path(state_dir, aoi), **{f"frame_{i}": f for i, f in enumerate(frames)})
     return frames
 
 
 def run_mask(in_dir: str, state_dir: str = "data/state", thresholds_path: str = "config/thresholds.json",
-             patch_size: int = 256, lookback: int = 3) -> list[str]:
+             patch_size: int = 256, max_frames: int = 64) -> list[str]:
     """Core preprocess logic, callable directly (Prefect task wraps this) as
     well as via the CLI `main()` below. Returns the list of AOI names whose
     rolling history got updated this run."""
@@ -93,9 +97,9 @@ def run_mask(in_dir: str, state_dir: str = "data/state", thresholds_path: str = 
             mndwi = np.load(os.path.join(in_dir, f"{name}_mndwi.npy"))
             water = apply_threshold(mndwi, thresholds[name])
             water = fit_patch(water, patch_size)
-            frames = update_history(state_dir, name, water, lookback)
+            frames = update_history(state_dir, name, water, max_frames)
             updated_aois.append(name)
-            print(f"[{name}] mask OK, history now {len(frames)}/{lookback} frame(s)")
+            print(f"[{name}] mask OK, history now {len(frames)}/{max_frames} frame(s)")
         except Exception as exc:  # noqa: BLE001 -- one bad AOI shouldn't sink the whole run
             print(f"[{name}] SKIP -- unexpected error: {exc}")
             continue
@@ -111,10 +115,10 @@ def main() -> None:
     ap.add_argument("--state-dir", default="data/state")
     ap.add_argument("--thresholds", default="config/thresholds.json")
     ap.add_argument("--patch-size", type=int, default=256)
-    ap.add_argument("--lookback", type=int, default=3)
+    ap.add_argument("--max-frames", type=int, default=64, help="retain at most this many history frames")
     args = ap.parse_args()
 
-    run_mask(args.in_dir, args.state_dir, args.thresholds, args.patch_size, args.lookback)
+    run_mask(args.in_dir, args.state_dir, args.thresholds, args.patch_size, args.max_frames)
 
 
 if __name__ == "__main__":

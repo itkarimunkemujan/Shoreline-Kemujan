@@ -1,0 +1,1994 @@
+{
+  "Titik_02": {
+    "0": {
+      "rate_m_per_year": 0.39703182104513124,
+      "pred_dist": 4.414254975447079,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "1": {
+      "rate_m_per_year": -0.01792414544539663,
+      "pred_dist": 2.2249147988602402,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "2": {
+      "rate_m_per_year": 0.11803705250449888,
+      "pred_dist": 2.5554819095272876,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "3": {
+      "rate_m_per_year": 0.535067731172001,
+      "pred_dist": 5.426562302935736,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "4": {
+      "rate_m_per_year": -0.2291027583312034,
+      "pred_dist": 1.9911526225968146,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "5": {
+      "rate_m_per_year": -0.20738740836220795,
+      "pred_dist": 0.640436372065949,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "6": {
+      "rate_m_per_year": -0.3767121426971883,
+      "pred_dist": 2.2060920148652485,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "7": {
+      "rate_m_per_year": 0.9738133266903631,
+      "pred_dist": 7.920198837972066,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "8": {
+      "rate_m_per_year": 0.757800895195923,
+      "pred_dist": 7.309236280315417,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "9": {
+      "rate_m_per_year": 0.5458876458736345,
+      "pred_dist": 5.43944117919682,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "10": {
+      "rate_m_per_year": -0.24648590127086417,
+      "pred_dist": 1.3672269570056983,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "11": {
+      "rate_m_per_year": -0.15335400217258238,
+      "pred_dist": 0.3119818821507465,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "12": {
+      "rate_m_per_year": 0.02649180511723519,
+      "pred_dist": 2.6419048770175166,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "13": {
+      "rate_m_per_year": 0.4341649018897631,
+      "pred_dist": 5.581513418984059,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "14": {
+      "rate_m_per_year": -0.10664419673687692,
+      "pred_dist": 3.502727523549197,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "15": {
+      "rate_m_per_year": 0.19782370649914746,
+      "pred_dist": 2.5130226682670127,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "16": {
+      "rate_m_per_year": 0.3087000689438859,
+      "pred_dist": 4.29342859417784,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "17": {
+      "rate_m_per_year": -0.3547100811296452,
+      "pred_dist": 2.261308826935988,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "18": {
+      "rate_m_per_year": 1.0407381548073589,
+      "pred_dist": 7.6468835012215095,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "19": {
+      "rate_m_per_year": 1.0981797112038516,
+      "pred_dist": 7.8146587665819425,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "20": {
+      "rate_m_per_year": 0.43898182066042385,
+      "pred_dist": 5.527810756877329,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "21": {
+      "rate_m_per_year": -0.392207320342281,
+      "pred_dist": 2.9400325183557925,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "22": {
+      "rate_m_per_year": 1.55035316180124,
+      "pred_dist": 10.66079964331766,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "23": {
+      "rate_m_per_year": 0.27055570561065145,
+      "pred_dist": 3.1903617201212455,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "24": {
+      "rate_m_per_year": 1.1150015134250215,
+      "pred_dist": 8.804624684922146,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "25": {
+      "rate_m_per_year": 1.0395003006506383,
+      "pred_dist": 7.624288484201315,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "26": {
+      "rate_m_per_year": -0.1786265352787059,
+      "pred_dist": 2.0613240930586585,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "27": {
+      "rate_m_per_year": -0.2736768604816533,
+      "pred_dist": 2.4993217792037967,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "28": {
+      "rate_m_per_year": -0.09393046207294699,
+      "pred_dist": 3.493119667308889,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "29": {
+      "rate_m_per_year": -0.13117638807019735,
+      "pred_dist": 2.3459594727418107,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "30": {
+      "rate_m_per_year": 0.1466523060430287,
+      "pred_dist": 3.4231503626053836,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "31": {
+      "rate_m_per_year": 0.24102574322346076,
+      "pred_dist": 4.321527444304252,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "32": {
+      "rate_m_per_year": 0.25277342589799257,
+      "pred_dist": 5.8393658557715185,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "33": {
+      "rate_m_per_year": 0.4405504194382663,
+      "pred_dist": 12.142328724091954,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "34": {
+      "rate_m_per_year": -0.36632090712526366,
+      "pred_dist": 3.2046564882057282,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "35": {
+      "rate_m_per_year": -0.2693188064547137,
+      "pred_dist": 3.6594053332903513,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "36": {
+      "rate_m_per_year": -0.42981930181644146,
+      "pred_dist": 6.081955087342976,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "37": {
+      "rate_m_per_year": 3.6519922774457263,
+      "pred_dist": 26.906554955809952,
+      "target_year": 2026,
+      "n_obs": 12
+    },
+    "38": {
+      "rate_m_per_year": 0.009800093160435069,
+      "pred_dist": 0.08759595046257118,
+      "target_year": 2026,
+      "n_obs": 7
+    },
+    "39": {
+      "rate_m_per_year": 0.04338423388740142,
+      "pred_dist": 0.46718638328502493,
+      "target_year": 2026,
+      "n_obs": 7
+    }
+  },
+  "Titik_04": {
+    "0": {
+      "rate_m_per_year": 0.23305225459799714,
+      "pred_dist": 6.466073790552684,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "1": {
+      "rate_m_per_year": 0.4028703600917469,
+      "pred_dist": 5.710025730456323,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "2": {
+      "rate_m_per_year": 0.25478008074973785,
+      "pred_dist": 7.677108811431992,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "3": {
+      "rate_m_per_year": 0.32366521736028214,
+      "pred_dist": 8.078004763118201,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "4": {
+      "rate_m_per_year": 0.4903514082743368,
+      "pred_dist": 7.68736190709933,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "5": {
+      "rate_m_per_year": 0.63658126196651,
+      "pred_dist": 5.015105443751963,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "6": {
+      "rate_m_per_year": -0.0832180039110343,
+      "pred_dist": 2.3279142213642388,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "7": {
+      "rate_m_per_year": -0.13183960967403535,
+      "pred_dist": 1.4915207670538848,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "8": {
+      "rate_m_per_year": -0.20724374625005737,
+      "pred_dist": 2.0175757343398573,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "9": {
+      "rate_m_per_year": 0.12373946201621518,
+      "pred_dist": 0.8608634127111827,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "10": {
+      "rate_m_per_year": 1.2762235077635984,
+      "pred_dist": 14.087924565918456,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "11": {
+      "rate_m_per_year": -0.1319766899501093,
+      "pred_dist": 3.1158194065890257,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "12": {
+      "rate_m_per_year": -0.41636608908453476,
+      "pred_dist": 2.056254312787246,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "13": {
+      "rate_m_per_year": -0.41456259369149945,
+      "pred_dist": 2.702073208765114,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "14": {
+      "rate_m_per_year": 0.2028020734864432,
+      "pred_dist": 5.1251528479466515,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "15": {
+      "rate_m_per_year": -0.12455046255581648,
+      "pred_dist": 2.007434451895392,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "16": {
+      "rate_m_per_year": 0.3404245210791108,
+      "pred_dist": 3.0686140368457018,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "17": {
+      "rate_m_per_year": 0.06292278909950985,
+      "pred_dist": 3.857581665306782,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "18": {
+      "rate_m_per_year": -0.14175424608678402,
+      "pred_dist": 4.623425614737016,
+      "target_year": 2026,
+      "n_obs": 23
+    },
+    "19": {
+      "rate_m_per_year": -0.8903767935457749,
+      "pred_dist": 0.7825828556328815,
+      "target_year": 2026,
+      "n_obs": 23
+    },
+    "20": {
+      "rate_m_per_year": -0.24054407268297778,
+      "pred_dist": 1.1329923872653467,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "21": {
+      "rate_m_per_year": -0.22610294586124718,
+      "pred_dist": 3.343509517001735,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "22": {
+      "rate_m_per_year": 0.14630545166269102,
+      "pred_dist": 2.9280182311287604,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "23": {
+      "rate_m_per_year": -0.09717537900898354,
+      "pred_dist": 1.803427476430869,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "24": {
+      "rate_m_per_year": -0.04667626223696093,
+      "pred_dist": 1.3625853670643409,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "25": {
+      "rate_m_per_year": -0.0756842422037646,
+      "pred_dist": 5.076362174892012,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "26": {
+      "rate_m_per_year": -0.8378965313007242,
+      "pred_dist": 0.353122872074664,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "27": {
+      "rate_m_per_year": 0.5808154429308242,
+      "pred_dist": 5.151048235732105,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "28": {
+      "rate_m_per_year": -0.1586180814982883,
+      "pred_dist": 1.2501645660919962,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "29": {
+      "rate_m_per_year": -0.1441576069924015,
+      "pred_dist": 0.7061574156982715,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "30": {
+      "rate_m_per_year": 0.0030155684276287984,
+      "pred_dist": 2.2517435011174403,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "31": {
+      "rate_m_per_year": -0.1668102882395497,
+      "pred_dist": 2.731240820069786,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "32": {
+      "rate_m_per_year": -0.22210944582852363,
+      "pred_dist": 2.075025498172181,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "33": {
+      "rate_m_per_year": 0.16640131337260908,
+      "pred_dist": 1.6326909277378832,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "34": {
+      "rate_m_per_year": 0.0966784420766764,
+      "pred_dist": 3.115027253900024,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "35": {
+      "rate_m_per_year": 0.19702439827956972,
+      "pred_dist": 2.770992800218494,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "36": {
+      "rate_m_per_year": -0.3175479936831821,
+      "pred_dist": 1.5572509577153824,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "37": {
+      "rate_m_per_year": 0.010697153836672486,
+      "pred_dist": 0.1495943226367764,
+      "target_year": 2026,
+      "n_obs": 9
+    },
+    "38": {
+      "rate_m_per_year": -0.0023612040667737077,
+      "pred_dist": 0.014192403558720201,
+      "target_year": 2026,
+      "n_obs": 9
+    },
+    "39": {
+      "rate_m_per_year": -0.008275957376428004,
+      "pred_dist": 0.4331286381568127,
+      "target_year": 2026,
+      "n_obs": 8
+    }
+  },
+  "Titik_05": {
+    "0": {
+      "rate_m_per_year": -0.23656077425167613,
+      "pred_dist": 4.058410257440812,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "1": {
+      "rate_m_per_year": -0.07844853940034825,
+      "pred_dist": 2.6155054227700134,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "2": {
+      "rate_m_per_year": -1.068546537928267,
+      "pred_dist": -0.5524679126619958,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "3": {
+      "rate_m_per_year": -0.20810363308420096,
+      "pred_dist": 4.302196179683165,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "4": {
+      "rate_m_per_year": -0.2771308145505553,
+      "pred_dist": 2.7452465588368113,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "5": {
+      "rate_m_per_year": 0.25907718227584603,
+      "pred_dist": 2.4740647674567526,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "6": {
+      "rate_m_per_year": 0.503856078869829,
+      "pred_dist": 3.2827555835785915,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "7": {
+      "rate_m_per_year": -0.7499769855363111,
+      "pred_dist": 1.7625995577002413,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "8": {
+      "rate_m_per_year": 1.201304242460948,
+      "pred_dist": 7.351518627050609,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "9": {
+      "rate_m_per_year": 0.39033207542846954,
+      "pred_dist": 3.0797336207368744,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "10": {
+      "rate_m_per_year": -0.6852467548700385,
+      "pred_dist": 0.35561755507137605,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "11": {
+      "rate_m_per_year": -0.198279832806268,
+      "pred_dist": 1.6177041899680944,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "12": {
+      "rate_m_per_year": -0.08317515918075503,
+      "pred_dist": 2.561333203459526,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "13": {
+      "rate_m_per_year": -0.17699082807631902,
+      "pred_dist": 8.19529274847423,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "14": {
+      "rate_m_per_year": 0.10839093634449669,
+      "pred_dist": 10.583681425972088,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "15": {
+      "rate_m_per_year": -0.7827581205653297,
+      "pred_dist": 4.591400949082754,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "16": {
+      "rate_m_per_year": 0.058680943571653606,
+      "pred_dist": 1.8615924988894221,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "17": {
+      "rate_m_per_year": 0.016508733799967177,
+      "pred_dist": 4.684608356258817,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "18": {
+      "rate_m_per_year": -0.06928867568680082,
+      "pred_dist": 3.256311354267922,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "19": {
+      "rate_m_per_year": 0.8343189042104387,
+      "pred_dist": 7.4553204956382615,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "20": {
+      "rate_m_per_year": 0.11290424901390844,
+      "pred_dist": 8.834679729924858,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "21": {
+      "rate_m_per_year": 0.3863216907708844,
+      "pred_dist": 9.792520892310563,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "22": {
+      "rate_m_per_year": 1.3852888558715077,
+      "pred_dist": 11.573144222418705,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "23": {
+      "rate_m_per_year": 1.4155475342774537,
+      "pred_dist": 13.44392169787534,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "24": {
+      "rate_m_per_year": 0.667642423457013,
+      "pred_dist": 5.18709111142357,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "25": {
+      "rate_m_per_year": 0.4618897716082259,
+      "pred_dist": 3.22397865427547,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "26": {
+      "rate_m_per_year": 0.4208614819321949,
+      "pred_dist": 3.1007546881991175,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "27": {
+      "rate_m_per_year": -0.7116996160395791,
+      "pred_dist": 1.3540639405807724,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "28": {
+      "rate_m_per_year": -0.594155916317682,
+      "pred_dist": 10.653608548986995,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "29": {
+      "rate_m_per_year": 1.0320060887051232,
+      "pred_dist": 9.528444464649965,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "30": {
+      "rate_m_per_year": 1.2660213277029584,
+      "pred_dist": 12.445563749164194,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "31": {
+      "rate_m_per_year": -0.9955435488996388,
+      "pred_dist": 11.663616388903165,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "32": {
+      "rate_m_per_year": 0.7472532627475164,
+      "pred_dist": 7.074474156922179,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "33": {
+      "rate_m_per_year": -0.33442996899340627,
+      "pred_dist": 13.027535023375094,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "34": {
+      "rate_m_per_year": 3.5759374698118367,
+      "pred_dist": 26.798447497111738,
+      "target_year": 2026,
+      "n_obs": 12
+    },
+    "35": {
+      "rate_m_per_year": 0.8073347514354388,
+      "pred_dist": 9.19021804705335,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "36": {
+      "rate_m_per_year": 1.3491176877545203,
+      "pred_dist": 8.809369206403971,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "37": {
+      "rate_m_per_year": 1.3883890247756645,
+      "pred_dist": 10.587608994966104,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "38": {
+      "rate_m_per_year": 1.8539331727087636,
+      "pred_dist": 14.733152486065592,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "39": {
+      "rate_m_per_year": 1.132444662263114,
+      "pred_dist": 9.376065186502274,
+      "target_year": 2026,
+      "n_obs": 22
+    }
+  },
+  "Titik_06": {
+    "0": {
+      "rate_m_per_year": -0.027871554644222214,
+      "pred_dist": 1.1870616221142853,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "1": {
+      "rate_m_per_year": 0.572110895153816,
+      "pred_dist": 5.23755668791955,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "2": {
+      "rate_m_per_year": -0.16563169295599267,
+      "pred_dist": 0.04341154257298285,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "3": {
+      "rate_m_per_year": -0.12688860602059804,
+      "pred_dist": 2.466248499407982,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "4": {
+      "rate_m_per_year": 0.21719263774203487,
+      "pred_dist": 2.0930548796966377,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "5": {
+      "rate_m_per_year": 0.11498164829652395,
+      "pred_dist": 1.453137425625414,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "6": {
+      "rate_m_per_year": 0.2879710758342648,
+      "pred_dist": 3.455577436425642,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "7": {
+      "rate_m_per_year": 0.004859501164832787,
+      "pred_dist": 0.5883059632454675,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "8": {
+      "rate_m_per_year": 0.08933178214745612,
+      "pred_dist": 1.497969088542476,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "9": {
+      "rate_m_per_year": -0.9028551966867061,
+      "pred_dist": 0.8464057106430118,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "10": {
+      "rate_m_per_year": -0.9085749345579538,
+      "pred_dist": 0.2419214149729214,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "11": {
+      "rate_m_per_year": -0.17298794205152873,
+      "pred_dist": 3.013642915829223,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "12": {
+      "rate_m_per_year": 0.07236797776496796,
+      "pred_dist": 2.474495294123841,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "13": {
+      "rate_m_per_year": 0.06179860053954144,
+      "pred_dist": 2.8318078929943624,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "14": {
+      "rate_m_per_year": 1.4328206449436602,
+      "pred_dist": 14.140965718591815,
+      "target_year": 2026,
+      "n_obs": 6
+    },
+    "15": {
+      "rate_m_per_year": -0.6219874534269463,
+      "pred_dist": -0.13113002478326052,
+      "target_year": 2026,
+      "n_obs": 6
+    },
+    "16": {
+      "rate_m_per_year": 1.964180252800295,
+      "pred_dist": 22.051704450368106,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "17": {
+      "rate_m_per_year": 0.5409928222692669,
+      "pred_dist": 5.407097389759201,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "18": {
+      "rate_m_per_year": 0.07379411478139251,
+      "pred_dist": 1.5151380908171461,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "19": {
+      "rate_m_per_year": 0.4751510319204924,
+      "pred_dist": 9.60849082289269,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "20": {
+      "rate_m_per_year": -0.5775305915084966,
+      "pred_dist": 0.8385491015660591,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "21": {
+      "rate_m_per_year": -0.11878946352348024,
+      "pred_dist": 0.8888859916136767,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "22": {
+      "rate_m_per_year": -0.529504553126218,
+      "pred_dist": 1.395539160826047,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "23": {
+      "rate_m_per_year": -0.5258825085020289,
+      "pred_dist": 5.077567034153617,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "24": {
+      "rate_m_per_year": -0.006291938543860261,
+      "pred_dist": 1.6272384295896458,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "25": {
+      "rate_m_per_year": 0.41008404830170386,
+      "pred_dist": 5.86591366004609,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "26": {
+      "rate_m_per_year": 1.3541744854102802,
+      "pred_dist": 10.244638299750932,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "27": {
+      "rate_m_per_year": -0.040600018119645316,
+      "pred_dist": 0.7757979066020368,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "28": {
+      "rate_m_per_year": 1.0561102638545605,
+      "pred_dist": 10.106093816423254,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "29": {
+      "rate_m_per_year": 0.2300087375457733,
+      "pred_dist": 2.447138234129909,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "30": {
+      "rate_m_per_year": 0.043154489952826766,
+      "pred_dist": 2.3377255078568737,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "31": {
+      "rate_m_per_year": 0.6531572120810423,
+      "pred_dist": 9.78709531959862,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "32": {
+      "rate_m_per_year": 0.6296843160695558,
+      "pred_dist": 8.16878494132402,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "33": {
+      "rate_m_per_year": 0.05396537513682716,
+      "pred_dist": 3.497122331027896,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "34": {
+      "rate_m_per_year": 0.41206672202218836,
+      "pred_dist": 5.31901336064891,
+      "target_year": 2026,
+      "n_obs": 23
+    },
+    "35": {
+      "rate_m_per_year": 0.3310950735483105,
+      "pred_dist": 8.87608549229617,
+      "target_year": 2026,
+      "n_obs": 23
+    },
+    "36": {
+      "rate_m_per_year": 0.3126964552793333,
+      "pred_dist": 5.5220460107486815,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "37": {
+      "rate_m_per_year": 0.029779318488705693,
+      "pred_dist": 1.2525226061937147,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "38": {
+      "rate_m_per_year": -0.8097783514535144,
+      "pred_dist": -1.2682024822690892,
+      "target_year": 2026,
+      "n_obs": 23
+    },
+    "39": {
+      "rate_m_per_year": -1.0771140456891402,
+      "pred_dist": -2.3039090490815397,
+      "target_year": 2026,
+      "n_obs": 23
+    }
+  },
+  "Titik_07": {
+    "0": {
+      "rate_m_per_year": -0.948161437440258,
+      "pred_dist": 4.180364046085742,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "1": {
+      "rate_m_per_year": 1.802988218975285,
+      "pred_dist": 14.466410147310853,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "2": {
+      "rate_m_per_year": 1.0279030400790379,
+      "pred_dist": 10.26649090468436,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "3": {
+      "rate_m_per_year": 0.24729007960480356,
+      "pred_dist": 5.761125380864314,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "4": {
+      "rate_m_per_year": 0.4181066148340417,
+      "pred_dist": 7.513055549229648,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "5": {
+      "rate_m_per_year": -0.041434741098257295,
+      "pred_dist": 5.565838142714711,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "6": {
+      "rate_m_per_year": -0.006447442636467262,
+      "pred_dist": 2.3249563273863387,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "7": {
+      "rate_m_per_year": -0.3092493504351113,
+      "pred_dist": 5.918746005584012,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "8": {
+      "rate_m_per_year": 0.4369296959268412,
+      "pred_dist": 4.512785810160835,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "9": {
+      "rate_m_per_year": 0.12029520130339678,
+      "pred_dist": 3.1937088574040615,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "10": {
+      "rate_m_per_year": -0.024935465543823778,
+      "pred_dist": 5.722126103963667,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "11": {
+      "rate_m_per_year": 0.3755517407547737,
+      "pred_dist": 2.8334117562498022,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "12": {
+      "rate_m_per_year": 0.6620251138576103,
+      "pred_dist": 8.12687192566841,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "13": {
+      "rate_m_per_year": -0.07221184029913731,
+      "pred_dist": 0.9171537094454152,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "14": {
+      "rate_m_per_year": 0.23398742511320866,
+      "pred_dist": 2.9961814666950772,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "15": {
+      "rate_m_per_year": -0.0337422428632,
+      "pred_dist": 1.515719911384977,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "16": {
+      "rate_m_per_year": -0.4482227967448742,
+      "pred_dist": 0.41957260896435855,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "17": {
+      "rate_m_per_year": 0.13274566333726306,
+      "pred_dist": 1.6833721316018,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "19": {
+      "rate_m_per_year": -0.6958349468343065,
+      "pred_dist": -0.3349160931852566,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "20": {
+      "rate_m_per_year": 0.03241513444078699,
+      "pred_dist": 2.508852499867203,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "21": {
+      "rate_m_per_year": 0.27058006241702304,
+      "pred_dist": 3.057396158953111,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "22": {
+      "rate_m_per_year": -0.38552466565157517,
+      "pred_dist": -0.18064391018992865,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "23": {
+      "rate_m_per_year": 0.10839656904614663,
+      "pred_dist": 1.802766104449347,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "24": {
+      "rate_m_per_year": 0.40209686371588305,
+      "pred_dist": 3.2081271826723423,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "25": {
+      "rate_m_per_year": -0.7261529068622604,
+      "pred_dist": 0.9922674270378593,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "26": {
+      "rate_m_per_year": 1.218206546901768,
+      "pred_dist": 8.124329952976495,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "27": {
+      "rate_m_per_year": 0.8347957320987507,
+      "pred_dist": 7.549081445962656,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "28": {
+      "rate_m_per_year": 1.443237629999551,
+      "pred_dist": 10.272192372353402,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "29": {
+      "rate_m_per_year": -0.582678757254012,
+      "pred_dist": 2.8641781544968126,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "30": {
+      "rate_m_per_year": 0.15418440615760387,
+      "pred_dist": 5.860284002613639,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "31": {
+      "rate_m_per_year": 1.0121206108664325,
+      "pred_dist": 8.985706358123025,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "32": {
+      "rate_m_per_year": -0.27447472426850233,
+      "pred_dist": 5.5940256337872825,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "33": {
+      "rate_m_per_year": 0.7381213500986971,
+      "pred_dist": 14.48221067092868,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "34": {
+      "rate_m_per_year": -0.019515023272436954,
+      "pred_dist": 2.3232617075809685,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "35": {
+      "rate_m_per_year": 0.007428871633174816,
+      "pred_dist": 1.8390035931628201,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "36": {
+      "rate_m_per_year": -0.1822609380692797,
+      "pred_dist": 1.423138694139709,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "37": {
+      "rate_m_per_year": 0.31892509190644636,
+      "pred_dist": 4.499729440061969,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "38": {
+      "rate_m_per_year": 0.16168382585862798,
+      "pred_dist": 1.5696191154236203,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "39": {
+      "rate_m_per_year": -0.5686543806629495,
+      "pred_dist": 0.31357495088218457,
+      "target_year": 2026,
+      "n_obs": 22
+    }
+  },
+  "Titik_09": {
+    "0": {
+      "rate_m_per_year": -0.017791670281409173,
+      "pred_dist": 3.492400612645511,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "1": {
+      "rate_m_per_year": 0.5259169501117124,
+      "pred_dist": 6.220765033744783,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "2": {
+      "rate_m_per_year": -0.9726351638593244,
+      "pred_dist": 2.9595933459895605,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "3": {
+      "rate_m_per_year": 1.0350106573228277,
+      "pred_dist": 10.146038743403551,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "4": {
+      "rate_m_per_year": 1.194586387617226,
+      "pred_dist": 11.006136633269762,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "5": {
+      "rate_m_per_year": 0.9745311090515008,
+      "pred_dist": 6.8317819069543475,
+      "target_year": 2026,
+      "n_obs": 18
+    },
+    "6": {
+      "rate_m_per_year": 0.38228338235899556,
+      "pred_dist": 6.234357032539947,
+      "target_year": 2026,
+      "n_obs": 18
+    },
+    "7": {
+      "rate_m_per_year": 0.41973201777582425,
+      "pred_dist": 11.364541145640487,
+      "target_year": 2026,
+      "n_obs": 17
+    },
+    "8": {
+      "rate_m_per_year": 1.3893358727501621,
+      "pred_dist": 12.263062847643596,
+      "target_year": 2026,
+      "n_obs": 18
+    },
+    "9": {
+      "rate_m_per_year": -0.2503013347653138,
+      "pred_dist": 4.3365210839562565,
+      "target_year": 2026,
+      "n_obs": 18
+    },
+    "10": {
+      "rate_m_per_year": -0.49577743855983925,
+      "pred_dist": 3.1787751897991257,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "11": {
+      "rate_m_per_year": -0.8325529169494778,
+      "pred_dist": 3.780676632486575,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "12": {
+      "rate_m_per_year": -0.007681398847430122,
+      "pred_dist": 2.9392238472467103,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "13": {
+      "rate_m_per_year": 0.33405125354498244,
+      "pred_dist": 5.2810566146663405,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "14": {
+      "rate_m_per_year": 0.7245845861971899,
+      "pred_dist": 9.998433915269061,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "15": {
+      "rate_m_per_year": -0.06363333163613345,
+      "pred_dist": 2.4307403566055257,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "16": {
+      "rate_m_per_year": 0.1890474173816663,
+      "pred_dist": 3.0023254384177562,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "17": {
+      "rate_m_per_year": 1.2175246707657954,
+      "pred_dist": 10.0582681731089,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "18": {
+      "rate_m_per_year": 1.031591398438143,
+      "pred_dist": 7.955151713147188,
+      "target_year": 2026,
+      "n_obs": 19
+    },
+    "19": {
+      "rate_m_per_year": -1.2393463636615774,
+      "pred_dist": 3.5524023083330576,
+      "target_year": 2026,
+      "n_obs": 16
+    },
+    "20": {
+      "rate_m_per_year": 0.9007247571573325,
+      "pred_dist": 8.263466692050542,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "21": {
+      "rate_m_per_year": 0.5491584675224022,
+      "pred_dist": 5.958335624084157,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "22": {
+      "rate_m_per_year": -0.4756229869933088,
+      "pred_dist": 6.393585270201129,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "23": {
+      "rate_m_per_year": 0.07968393442831252,
+      "pred_dist": 6.206002978648286,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "24": {
+      "rate_m_per_year": 0.4075115591832142,
+      "pred_dist": 6.508765308642978,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "25": {
+      "rate_m_per_year": 0.7894584302591549,
+      "pred_dist": 7.031583752989718,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "26": {
+      "rate_m_per_year": 0.31477514783910354,
+      "pred_dist": 4.271592293528329,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "27": {
+      "rate_m_per_year": 0.4150823359079857,
+      "pred_dist": 4.279978841624825,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "28": {
+      "rate_m_per_year": 0.39643492817159254,
+      "pred_dist": 10.600794717477925,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "29": {
+      "rate_m_per_year": 0.5999945016604061,
+      "pred_dist": 7.32702969461684,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "30": {
+      "rate_m_per_year": 0.8890448983098893,
+      "pred_dist": 6.834012973198014,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "31": {
+      "rate_m_per_year": 0.5425511030205288,
+      "pred_dist": 8.014480186090168,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "32": {
+      "rate_m_per_year": 0.5001350219009716,
+      "pred_dist": 5.073799152924266,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "33": {
+      "rate_m_per_year": -0.18206077419558073,
+      "pred_dist": 3.344341392511808,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "34": {
+      "rate_m_per_year": -0.05681229817203903,
+      "pred_dist": 2.481110320199079,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "35": {
+      "rate_m_per_year": 0.21470327434958503,
+      "pred_dist": 2.934396617607433,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "36": {
+      "rate_m_per_year": -0.5950388470036183,
+      "pred_dist": 2.6151975122666045,
+      "target_year": 2026,
+      "n_obs": 20
+    },
+    "37": {
+      "rate_m_per_year": 0.6968436235646263,
+      "pred_dist": 7.151250468615444,
+      "target_year": 2026,
+      "n_obs": 19
+    },
+    "38": {
+      "rate_m_per_year": -0.4509716259259924,
+      "pred_dist": 1.2776107690914387,
+      "target_year": 2026,
+      "n_obs": 19
+    },
+    "39": {
+      "rate_m_per_year": -0.2583762468849129,
+      "pred_dist": 0.8772639488219056,
+      "target_year": 2026,
+      "n_obs": 20
+    }
+  },
+  "Titik_10": {
+    "0": {
+      "rate_m_per_year": 1.0182308610257964,
+      "pred_dist": 7.355130083658423,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "1": {
+      "rate_m_per_year": -0.19231365286531435,
+      "pred_dist": 0.8333302916041703,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "2": {
+      "rate_m_per_year": 0.23690078896029967,
+      "pred_dist": 3.968737627925691,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "3": {
+      "rate_m_per_year": 0.44803661713738074,
+      "pred_dist": 5.603272433743655,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "4": {
+      "rate_m_per_year": 0.7019402880786981,
+      "pred_dist": 5.490113898517166,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "5": {
+      "rate_m_per_year": 1.2022523616425589,
+      "pred_dist": 9.82717407804057,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "6": {
+      "rate_m_per_year": 0.009031048479347084,
+      "pred_dist": 2.4583320852066386,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "7": {
+      "rate_m_per_year": 0.6887441318384211,
+      "pred_dist": 7.354025802128035,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "8": {
+      "rate_m_per_year": 0.12638940902877321,
+      "pred_dist": 2.983040394877179,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "9": {
+      "rate_m_per_year": 0.09425891220670103,
+      "pred_dist": 1.2309065144518172,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "10": {
+      "rate_m_per_year": -0.13940861010449349,
+      "pred_dist": 0.8505631187238123,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "11": {
+      "rate_m_per_year": -0.4173958282020183,
+      "pred_dist": 0.6032221999931835,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "12": {
+      "rate_m_per_year": 0.32474023428169746,
+      "pred_dist": 7.381885360499837,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "13": {
+      "rate_m_per_year": 0.021488969375606376,
+      "pred_dist": 1.8868387892136766,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "14": {
+      "rate_m_per_year": 0.16603275610660542,
+      "pred_dist": 1.4581425404448964,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "15": {
+      "rate_m_per_year": 0.334701633842647,
+      "pred_dist": 3.6048660307096725,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "16": {
+      "rate_m_per_year": 0.06371079023001208,
+      "pred_dist": 1.0752579984780652,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "17": {
+      "rate_m_per_year": 0.13512425542554443,
+      "pred_dist": 1.3507912576859553,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "18": {
+      "rate_m_per_year": 1.2808689536121585,
+      "pred_dist": 9.216256186053215,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "19": {
+      "rate_m_per_year": 0.4846448783121264,
+      "pred_dist": 6.847426736288412,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "20": {
+      "rate_m_per_year": 0.8921707131020338,
+      "pred_dist": 12.197882965151166,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "21": {
+      "rate_m_per_year": 1.4655367880707046,
+      "pred_dist": 12.079410070310587,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "22": {
+      "rate_m_per_year": 0.9720570162319835,
+      "pred_dist": 10.080189732255349,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "23": {
+      "rate_m_per_year": 0.56695317937778,
+      "pred_dist": 11.508218886728628,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "24": {
+      "rate_m_per_year": 0.9125860050654871,
+      "pred_dist": 9.309672158615513,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "25": {
+      "rate_m_per_year": 0.3917455988324819,
+      "pred_dist": 3.6300746277734106,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "26": {
+      "rate_m_per_year": -0.48204051972854783,
+      "pred_dist": 1.647465951054869,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "27": {
+      "rate_m_per_year": 1.4821766899676097,
+      "pred_dist": 10.827796562712138,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "28": {
+      "rate_m_per_year": 1.1522290890648066,
+      "pred_dist": 10.665095272994222,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "29": {
+      "rate_m_per_year": 0.6040448554319213,
+      "pred_dist": 4.080370812500632,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "30": {
+      "rate_m_per_year": 0.6356250594832686,
+      "pred_dist": 12.01218550089061,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "31": {
+      "rate_m_per_year": -0.12419004325081988,
+      "pred_dist": 4.306693701242949,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "32": {
+      "rate_m_per_year": -0.5010147000997507,
+      "pred_dist": 1.7001048701040418,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "33": {
+      "rate_m_per_year": -0.22048698320927448,
+      "pred_dist": 2.547319549237102,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "34": {
+      "rate_m_per_year": 0.39833974316762594,
+      "pred_dist": 6.817604608296165,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "35": {
+      "rate_m_per_year": 0.19556978282004706,
+      "pred_dist": 7.094875883190866,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "36": {
+      "rate_m_per_year": -0.1646103300449223,
+      "pred_dist": 2.3509349413503173,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "37": {
+      "rate_m_per_year": 0.37602294211838944,
+      "pred_dist": 6.3084373393541,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "38": {
+      "rate_m_per_year": 0.2512000667588913,
+      "pred_dist": 7.022540111666672,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "39": {
+      "rate_m_per_year": 0.08183691591519493,
+      "pred_dist": 2.8483437101451727,
+      "target_year": 2026,
+      "n_obs": 22
+    }
+  },
+  "Titik_11": {
+    "0": {
+      "rate_m_per_year": 0.133431307158113,
+      "pred_dist": 6.524347324532755,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "1": {
+      "rate_m_per_year": 0.20671056842505436,
+      "pred_dist": 2.014016517093296,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "2": {
+      "rate_m_per_year": -0.11141559276298231,
+      "pred_dist": 0.9758357612858788,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "3": {
+      "rate_m_per_year": 0.41492274677467295,
+      "pred_dist": 3.6657126857658113,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "4": {
+      "rate_m_per_year": 0.5128006487676939,
+      "pred_dist": 3.57129656759912,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "5": {
+      "rate_m_per_year": 0.4805176661685737,
+      "pred_dist": 3.7596341325332787,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "6": {
+      "rate_m_per_year": 1.5766321412384952,
+      "pred_dist": 10.18298337892793,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "7": {
+      "rate_m_per_year": -0.027841342342276452,
+      "pred_dist": 9.461749076572296,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "8": {
+      "rate_m_per_year": 0.9429809089434849,
+      "pred_dist": 9.508614670109637,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "9": {
+      "rate_m_per_year": 1.1971522256657043,
+      "pred_dist": 9.309233481723368,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "10": {
+      "rate_m_per_year": 0.9618961911363518,
+      "pred_dist": 6.896510932029059,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "11": {
+      "rate_m_per_year": 0.8517410559758518,
+      "pred_dist": 5.542361350568854,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "12": {
+      "rate_m_per_year": 0.030498831343687038,
+      "pred_dist": 10.22191430048236,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "13": {
+      "rate_m_per_year": -0.26691222393314495,
+      "pred_dist": 4.021812891997001,
+      "target_year": 2026,
+      "n_obs": 18
+    },
+    "14": {
+      "rate_m_per_year": 0.1061411186609163,
+      "pred_dist": 0.8553203963037674,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "15": {
+      "rate_m_per_year": 0.7715197415486276,
+      "pred_dist": 7.0690521740521035,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "16": {
+      "rate_m_per_year": 1.521000495290957,
+      "pred_dist": 14.55181890095264,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "17": {
+      "rate_m_per_year": 0.1875260340549581,
+      "pred_dist": 3.7769470356792567,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "18": {
+      "rate_m_per_year": 0.20089690450051825,
+      "pred_dist": 4.43052457095115,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "19": {
+      "rate_m_per_year": 1.3632950971607085,
+      "pred_dist": 10.755486981242939,
+      "target_year": 2026,
+      "n_obs": 21
+    },
+    "20": {
+      "rate_m_per_year": 0.19993004254059774,
+      "pred_dist": 12.443430523513314,
+      "target_year": 2026,
+      "n_obs": 15
+    },
+    "21": {
+      "rate_m_per_year": 2.0684820309693395,
+      "pred_dist": 20.008583031695707,
+      "target_year": 2026,
+      "n_obs": 14
+    },
+    "22": {
+      "rate_m_per_year": 1.0991033574233358,
+      "pred_dist": 12.560269052304193,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "23": {
+      "rate_m_per_year": 0.8842624463985559,
+      "pred_dist": 6.5145843906484515,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "24": {
+      "rate_m_per_year": 1.0156415205619334,
+      "pred_dist": 10.98631326738223,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "25": {
+      "rate_m_per_year": 1.0009616347804096,
+      "pred_dist": 9.408399019925128,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "26": {
+      "rate_m_per_year": 1.0686927350019526,
+      "pred_dist": 13.412442891357387,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "27": {
+      "rate_m_per_year": 0.8704371746102367,
+      "pred_dist": 9.57395563932073,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "28": {
+      "rate_m_per_year": 0.5268463683085877,
+      "pred_dist": 5.644577385393859,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "29": {
+      "rate_m_per_year": 0.9581476848640847,
+      "pred_dist": 6.228253800687071,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "30": {
+      "rate_m_per_year": 1.4705861866454102,
+      "pred_dist": 9.273074122775142,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "31": {
+      "rate_m_per_year": 0.7637830873769338,
+      "pred_dist": 5.7398329241068495,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "32": {
+      "rate_m_per_year": 1.8210163283198388,
+      "pred_dist": 17.125798652823505,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "33": {
+      "rate_m_per_year": 0.21554635609840117,
+      "pred_dist": 2.804493884626879,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "34": {
+      "rate_m_per_year": 0.3346339623796705,
+      "pred_dist": 6.588616985686485,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "35": {
+      "rate_m_per_year": 0.8292766505882715,
+      "pred_dist": 7.805316646341453,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "36": {
+      "rate_m_per_year": 0.617396724384543,
+      "pred_dist": 5.488813419146254,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "37": {
+      "rate_m_per_year": 0.1079424599695405,
+      "pred_dist": 1.3044134467351967,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "38": {
+      "rate_m_per_year": 0.5988323745727001,
+      "pred_dist": 10.366191093692123,
+      "target_year": 2026,
+      "n_obs": 22
+    },
+    "39": {
+      "rate_m_per_year": 0.23810660115976223,
+      "pred_dist": 4.58362431227755,
+      "target_year": 2026,
+      "n_obs": 21
+    }
+  },
+  "Titik_19": {
+    "13": {
+      "rate_m_per_year": 2.387551984394502,
+      "pred_dist": 22.90794253435888,
+      "target_year": 2026,
+      "n_obs": 3
+    },
+    "15": {
+      "rate_m_per_year": 10.114013120995121,
+      "pred_dist": 75.93788395070078,
+      "target_year": 2026,
+      "n_obs": 3
+    },
+    "24": {
+      "rate_m_per_year": 2.9051311351813154,
+      "pred_dist": 21.78848351386023,
+      "target_year": 2026,
+      "n_obs": 2
+    },
+    "28": {
+      "rate_m_per_year": 0.259639228544869,
+      "pred_dist": 1.9472942140866962,
+      "target_year": 2026,
+      "n_obs": 2
+    },
+    "31": {
+      "rate_m_per_year": 3.550411623378614,
+      "pred_dist": 26.628087175342444,
+      "target_year": 2026,
+      "n_obs": 2
+    },
+    "32": {
+      "rate_m_per_year": 2.5453756805314782,
+      "pred_dist": 19.090317603985568,
+      "target_year": 2026,
+      "n_obs": 2
+    },
+    "33": {
+      "rate_m_per_year": 1.417192949424877,
+      "pred_dist": 10.628947120685552,
+      "target_year": 2026,
+      "n_obs": 2
+    },
+    "34": {
+      "rate_m_per_year": 4.609146960880731,
+      "pred_dist": 34.568602206607466,
+      "target_year": 2026,
+      "n_obs": 2
+    },
+    "37": {
+      "rate_m_per_year": 1.6358149441265353,
+      "pred_dist": 12.268612080950788,
+      "target_year": 2026,
+      "n_obs": 2
+    },
+    "38": {
+      "rate_m_per_year": 9.778125641502932,
+      "pred_dist": 73.33594231128154,
+      "target_year": 2026,
+      "n_obs": 2
+    }
+  }
+}
