@@ -1,0 +1,11 @@
+earthengine-api
+numpy
+scipy
+shapely
+scikit-image
+requests
+prefect
+duckdb
+s3fs
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
