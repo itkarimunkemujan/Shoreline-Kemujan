@@ -2,95 +2,138 @@
 
 ## Ringkasan
 
-Seluruh pipeline coastal berjalan lewat GitHub Actions, tanpa infra cloud
-tambahan (AWS/GCP). Model disimpan langsung di repo. Monitoring performa
-memakai backtest otomatis + GitHub Issues sebagai mekanisme alert —
-tanpa dashboard atau database terpisah.
+Seluruh pipeline coastal berjalan lewat **GitHub Actions**, tanpa infra cloud
+tambahan (AWS/GCP) di luar bucket **Cloudflare R2** yang dipakai sebagai
+warehouse raw zone (opsional). Orkestrasi tiap run memakai **Prefect**
+(`src/pipeline.py`) yang jalan **ephemeral di dalam runner Actions** — bukan
+server/worker/agent Prefect yang nyala terus, sehingga biaya monitoring $0.
+Model disimpan sebagai **GitHub Release asset** (tag `model-vN`), bukan
+di-commit ke repo. Delivery output ke dashboard WebGIS lewat Sanity
+(`abrasionDataset` singleton + `shorelineForecast` per-AOI-per-tahun), dengan
+alur staging (`development`) → production (`production`).
 
 ## Arsitektur
 
 ```mermaid
 flowchart TD
-    A[("Sentinel-2\nGoogle Earth Engine")] -->|cron: ingest.py| B[ingest.py\nfetch citra baru]
-    B --> C[etl.py\nMNDWI + Otsu\ndigitasi garis pantai]
+    subgraph TRAIN["Training — MANUAL, di luar Actions"]
+        T1["Notebook Colab/Kaggle GPU\nConvLSTM-UNet training"]
+        T2["checkpoint.pth + model_meta.json"]
+        T1 --> T2
+        T2 -->|upload manual| REL["GitHub Release\ntag model-vN"]
+    end
 
-    C --> D[inference.py\nConvLSTM-UNet forward pass\nload models/coastal/model.pth]
-    C --> E[backtest.py\nbandingkan prediksi cycle lalu\nvs data aktual musim ini]
+    subgraph ACTIONS["GitHub Actions — recalculate.yml\n(cron tiap 4 bulan / manual dispatch)"]
+        DL["Download checkpoint.pth +\nmodel_meta.json dari Release\n(MODEL_RELEASE_TAG)"]
+        FLOW["src/pipeline.py\nPrefect flow: shoreline_pipeline"]
+        FETCH["fetch_composite\nGEE Sentinel-2 composite per AOI"]
+        MASK["build_mask\ncloud mask, NDWI, tidal correction"]
+        TRACKA["track_a_predict\nConvLSTM-UNet inference"]
+        TRACKB["Track B (baseline)\nlrr_kalman.py: NSM/EPR/LRR per transect"]
+        PAYLOAD["build_payload\nGeoJSON + metrics.json"]
+        PUSH["push_to_sanity -> dataset development (staging)"]
+        UPLOAD["upload_to_r2 -> runs/<run_id>/"]
+        DL --> FLOW
+        FLOW --> FETCH --> MASK --> TRACKA
+        MASK --> TRACKB
+        TRACKA --> PAYLOAD
+        TRACKB --> PAYLOAD
+        PAYLOAD --> PUSH
+        PAYLOAD --> UPLOAD
+    end
 
-    D --> F[NSM/EPR calc\nper transect]
-    F --> G[GeoJSON + metrics.json]
-    G -->|push file| H[("repo: website-kemujan")]
-    H --> I[trigger rebuild\nAbrasion Monitoring page]
+    subgraph WH["Warehouse R2 — raw zone, immutable"]
+        RUNS["runs/<run_id>/\nGeoJSON + Parquet + run_manifest.json"]
+        STATE["state/last_promoted.json"]
+    end
 
-    E --> J[log metrik ke\nmonitoring/history.json\ncommit ke repo]
-    J --> K{Performa turun\nvs baseline persistence/LRR?}
-    K -->|ya, N kali berturut| L[Auto-buka GitHub Issue\n'Model performance degraded']
-    K -->|tidak| M[lanjut normal]
+    subgraph PROM["GitHub Actions — promote.yml\n(cron harian, no-op jika tidak ada run baru)"]
+        PFLOW["src/pipeline_promote.py\nDuckDB baca manifest R2"]
+        PVAL["validasi: file lengkap,\nmetrics non-null, >=1 hari,\n> last_promoted"]
+        PPUSH["push ke Sanity production"]
+        PFLOW --> PVAL --> PPUSH
+    end
 
-    L -.->|manual trigger| N[Retrain\nKaggle GPU / Colab]
-    N --> O[model.pth baru]
-    O -->|commit + review PR| P[models/coastal/model.pth]
-    P -.-> D
+    SANITY_STAG["Sanity dataset development"]
+    SANITY_PROD["Sanity dataset production"]
+    PAGE["WebGIS Kemujan\nAbrasion Monitoring layer"]
 
-    style N fill:#3a2a1a,color:#fff
-    style L fill:#4a1a1a,color:#fff
-    style H fill:#1a3a2a,color:#fff
+    PUSH --> SANITY_STAG
+    UPLOAD --> RUNS
+    RUNS --> PFLOW
+    PPUSH --> SANITY_PROD
+    STATE -.write.-> RUNS
+    SANITY_STAG --> PAGE
+    SANITY_PROD --> PAGE
+
+    subgraph OBS["Observability (opsional)"]
+        PCLOUD["Prefect Cloud dashboard"]
+    end
+    FLOW -.reporting opsional,\nhanya jika PREFECT_API_KEY di-set.-> PCLOUD
 ```
 
 ## Komponen
 
 | Bagian | Tempat jalan | Catatan |
 |---|---|---|
-| Ingest + ETL | GitHub Actions (cron) | Ambil citra GEE, hitung shoreline/NSM/EPR |
-| Inference | GitHub Actions (cron) | Model ringan (~400KB), forward pass saja, tidak perlu GPU |
-| Backtest/monitoring | GitHub Actions (cron, sama run dengan inference) | Bandingkan prediksi cycle sebelumnya vs data aktual yang baru masuk |
-| Alert | GitHub Issues (otomatis) | Dibuka Action kalau performa turun konsisten dari baseline |
+| Ingest + ETL | GitHub Actions (`recalculate.yml`, cron tiap 4 bulan) | `fetch_composite` (GEE Sentinel-2) + `build_mask` (MNDWI/tidal) |
+| Inference | GitHub Actions (cron yang sama) | Model ringan (~350KB), forward pass saja, tidak perlu GPU |
+| Track B (baseline) | GitHub Actions (cron yang sama) | `lrr_kalman.py`: NSM/EPR/LRR per transect — guaranteed floor |
+| Push staging | GitHub Actions (cron yang sama) | `push_to_sanity` → dataset Sanity `development` |
+| Warehouse | Cloudflare R2 (opsional) | Raw zone immutable: GeoJSON + Parquet + manifest, queryable via DuckDB |
+| Promote | GitHub Actions (`promote.yml`, cron harian) | Validasi run terbaru ≥1 hari & > `last_promoted` → push dataset `production` |
+| Model versioning | GitHub Release (tag `model-vN`) | `checkpoint.pth` + `model_meta.json`; pipeline baca dinamis dari `MODEL_RELEASE_TAG` |
+| Monitoring | Prefect Cloud (opsional, $0) | Flow ephemeral lapor via HTTP; tanpa `PREFECT_API_KEY` tetap jalan normal |
 | Training/retrain | Manual — Kaggle GPU / Colab | Dipicu manual (bukan cron), setelah Issue muncul atau evaluasi berkala |
-| Penyimpanan model | Commit langsung ke repo (`models/coastal/model.pth`) | ~400KB, jauh di bawah limit GitHub, tidak perlu Git LFS/S3 |
-| Delivery output | Push file ke repo "website kemujan" | Trigger rebuild situs (bagian Abrasion Monitoring) |
+| Delivery output | Sanity (staging + production) | WebGIS Kemujan baca dataset production (dengan fallback GeoJSON statis di repo website) |
+
+## Alur staging → production
+
+1. **Staging**: tiap run `recalculate.yml` push langsung ke dataset Sanity
+   `development` (`SANITY_DATASET_STAGING`) — zona aman, dashboard asli
+   (`production`) tidak terpengaruh oleh testing.
+2. **Warehouse**: output run yang sama di-upload ke R2 (`runs/<run_id>/`),
+   queryable via DuckDB (Parquet) — arsip immutable + audit trail.
+3. **Promote**: `promote.yml` (cron harian) membaca manifest R2, mengambil run
+   terbaru yang valid (file lengkap, metrics non-null, umur run ≥ 1 hari, dan
+   lebih baru dari `state/last_promoted.json` di R2), lalu push ke dataset
+   `production`. Run yang sama tidak pernah di-promote dua kali.
 
 ## Strategi retrain
 
 **Tidak "set and forget".** Retrain manual periodik (bukan otomatis
 setiap cron), dipicu oleh salah satu dari:
-- GitHub Issue otomatis dari backtest yang mendeteksi performa turun
-- Evaluasi berkala terjadwal manual (misal tiap pergantian tahun akademik
-  atau musim tertentu)
+- Evaluasi berkala terjadwal manual (misal tiap pergantian musim)
+- Diagnosis performa turun dari hasil banding prediksi rollout vs data aktual
 
-Retrain baru masuk ke repo lewat pull request (bukan langsung commit ke
-main), supaya ada titik review sebelum model produksi berubah — mengingat
-proyek ini pernah punya bug arsitektur yang lolos tanpa terdeteksi
-sampai diperiksa manual.
+Retrain menghasilkan checkpoint baru → di-upload sebagai GitHub Release tag
+baru (`model-vN+1`) → bump `MODEL_RELEASE_TAG` di `recalculate.yml` → pipeline
+berikutnya otomatis memakai model baru. Detail runbook di `claude_result16.md`.
 
 ## Strategi monitoring
 
-Backtest sederhana: tiap kali musim baru masuk lewat ETL, prediksi
-rollout yang dibuat pipeline pada cycle sebelumnya (untuk musim yang
-sama) dibandingkan ke data aktual yang baru tersedia. Metrik (Dice/error
-vs baseline persistence dan LRR) dicatat sebagai file JSON yang di-commit
-ke repo — jadi riwayat performa model bisa dilihat langsung dari histori
-Git, tanpa database atau dashboard terpisah.
+- **Prefect (opsional)**: flow `shoreline_pipeline` melaporkan tiap task
+  (`fetch_composite` → `build_mask` → `track_a_predict` → `build_payload` →
+  `push_to_sanity` → `upload_to_r2`) ke Prefect Cloud kalau
+  `PREFECT_API_KEY`/`PREFECT_API_URL` di-set. Tanpa itu, flow tetap jalan
+  lokal/ephemeral tanpa lapor kemana-mana.
+- **Riwayat performa**: metrik tiap run (`metrics.json`) masuk ke warehouse R2
+  dan dataset staging/production Sanity — bisa dilihat dari riwayat run +
+  Parquet queryable.
 
 ## Yang ditolak dari rencana awal
 
 Sempat direncanakan pakai stack AWS penuh: Terraform (VPC, Aurora
 Serverless v2, Lambda, CloudFront, S3 dengan lifecycle ke Glacier),
-budget cap $15/bulan. Ini **dibatalkan** — GitHub Actions + repo Git
+budget cap $15/bulan. Ini **dibatalkan** — GitHub Actions + R2 bucket
 dinilai cukup untuk kebutuhan cron periodik dan penyimpanan model
 berukuran kecil, tanpa perlu database terkelola atau CDN terpisah.
 
 ## Yang belum diputuskan
 
-- Apakah repo "website kemujan" itu repo yang sama dengan proker etalase
-  digital (Karyakarsa wrapper), atau repo statis terpisah khusus untuk
-  halaman Abrasion Monitoring
-- Format file downstream persis: GeoJSON polyline shoreline saja, atau
-  disertai JSON metrics NSM/EPR per transect
-- Autentikasi GEE di GitHub Actions runner — perlu service account key
-  (bukan `ee.Authenticate()` interaktif yang dipakai di notebook),
-  disimpan sebagai GitHub Secret
-- Konversi notebook cells (`ShorelineProcessor256`, `Orch256`,
-  `AdaptiveOrch256`) menjadi script `.py` standalone yang jalan tanpa
-  Colab/Jupyter runtime
+- Apakah repo website (frontend `tourism-kemujan`) baca Sanity production
+  saja, atau juga perlu fallback GeoJSON statis di repo website
 - Threshold pasti "N kali berturut-turun" untuk trigger Issue otomatis
-  belum ditentukan angkanya
+  belum ditentukan angkanya (backtest/alert otomatis belum diimplementasikan)
+- Migrasi warehouse dari R2 ke solusi ber-query engine penuh (mis. DuckDB
+  + Parquet sudah aktif; Athena/Supabase bisa jadi tahap berikutnya)

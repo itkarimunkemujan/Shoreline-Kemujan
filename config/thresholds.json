@@ -1,16 +1,16 @@
 {
-  "_comment": "Fixed per-AOI Otsu MNDWI thresholds. Deliberately NOT recomputed at runtime by preprocessing/mask.py -- recomputing per run is what caused the training-data volatility diagnosed during the ConvLSTM training session (see PRD.md). Fill each value from the training notebook's manifest['aoi'][name]['threshold_val'] (Sentinel) after a training run, then commit. Values below are placeholders (null) until populated.",
+  "_comment": "Fixed per-AOI Otsu MNDWI thresholds. Deliberately NOT recomputed at runtime by preprocessing/mask.py -- recomputing per run is what caused the training-data volatility diagnosed during the ConvLSTM training session (see PRD.md). Values copied from data/offline_256_adaptive/manifest.json['aoi'][name]['threshold_otsu'] (the training run 20260802_064800 / offline_256_adaptive bundle).",
   "_scale_m": 10,
-  "_source": "notebooks/all_code2.py ShorelineProcessor256.fit_threshold() output, copied manually",
+  "_source": "data/offline_256_adaptive/manifest.json -> threshold_otsu",
   "thresholds": {
-    "Titik_02": null,
-    "Titik_07": null,
-    "Titik_19": null,
-    "Titik_11": null,
-    "Titik_05": null,
-    "Titik_04": null,
-    "Titik_09": null,
-    "Titik_06": null,
-    "Titik_10": null
+    "Titik_02": 0.004694558466256697,
+    "Titik_07": -0.05539416041829938,
+    "Titik_19": 0.39496251586959424,
+    "Titik_11": 0.09461863658257894,
+    "Titik_05": 0.0346,
+    "Titik_04": -0.0863,
+    "Titik_09": 0.0956252733635348,
+    "Titik_06": -0.0449,
+    "Titik_10": -0.015005752693494441
   }
 }

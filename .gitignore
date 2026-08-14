@@ -36,3 +36,6 @@ notebooks/outputs/*.png
 
 # NOTE: .npy / .npz training data under data/ is intentionally NOT ignored —
 # those files are small and are the actual training artifacts we want tracked.
+
+models/checkpoint.pth
+models/model_meta.json 

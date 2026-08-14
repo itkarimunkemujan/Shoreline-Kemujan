@@ -74,6 +74,34 @@ def update_history(state_dir: str, aoi: str, new_mask: np.ndarray, lookback: int
     return frames
 
 
+def run_mask(in_dir: str, state_dir: str = "data/state", thresholds_path: str = "config/thresholds.json",
+             patch_size: int = 256, lookback: int = 3) -> list[str]:
+    """Core preprocess logic, callable directly (Prefect task wraps this) as
+    well as via the CLI `main()` below. Returns the list of AOI names whose
+    rolling history got updated this run."""
+    thresholds = load_thresholds(thresholds_path)
+    with open(os.path.join(in_dir, "run_meta.json")) as f:
+        run_meta = json.load(f)
+
+    updated_aois = []
+    for entry in run_meta["aoi"]:
+        name = entry["name"]
+        if name not in thresholds:
+            print(f"[{name}] SKIP -- no threshold configured")
+            continue
+        try:
+            mndwi = np.load(os.path.join(in_dir, f"{name}_mndwi.npy"))
+            water = apply_threshold(mndwi, thresholds[name])
+            water = fit_patch(water, patch_size)
+            frames = update_history(state_dir, name, water, lookback)
+            updated_aois.append(name)
+            print(f"[{name}] mask OK, history now {len(frames)}/{lookback} frame(s)")
+        except Exception as exc:  # noqa: BLE001 -- one bad AOI shouldn't sink the whole run
+            print(f"[{name}] SKIP -- unexpected error: {exc}")
+            continue
+    return updated_aois
+
+
 def main() -> None:
     """Entry point: python -m src.preprocessing.mask --in-dir <fetch output> --state-dir data/state"""
     import argparse
@@ -86,20 +114,7 @@ def main() -> None:
     ap.add_argument("--lookback", type=int, default=3)
     args = ap.parse_args()
 
-    thresholds = load_thresholds(args.thresholds)
-    with open(os.path.join(args.in_dir, "run_meta.json")) as f:
-        run_meta = json.load(f)
-
-    for entry in run_meta["aoi"]:
-        name = entry["name"]
-        if name not in thresholds:
-            print(f"[{name}] SKIP -- no threshold configured")
-            continue
-        mndwi = np.load(os.path.join(args.in_dir, f"{name}_mndwi.npy"))
-        water = apply_threshold(mndwi, thresholds[name])
-        water = fit_patch(water, args.patch_size)
-        frames = update_history(args.state_dir, name, water, args.lookback)
-        print(f"[{name}] mask OK, history now {len(frames)}/{args.lookback} frame(s)")
+    run_mask(args.in_dir, args.state_dir, args.thresholds, args.patch_size, args.lookback)
 
 
 if __name__ == "__main__":

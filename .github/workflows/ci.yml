@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Syntax check (py_compile) all src modules
+        run: |
+          python -m compileall -q src
+
+      - name: Import pipeline entrypoints (no GEE/Sanity/R2 calls at import time)
+        run: |
+          python -c "import src.pipeline; print('src.pipeline OK')"
+          python -c "import src.pipeline_promote; print('src.pipeline_promote OK')"
+          python -c "import src.output.upload_r2; print('src.output.upload_r2 OK')"
+          python -c "import src.output.sanity_push; print('src.output.sanity_push OK')"
+          python -c "import src.output.geojson; print('src.output.geojson OK')"
+
+      - name: Validate configs parse
+        run: |
+          python -c "import json; d=json.load(open('config/thresholds.json')); assert len(d['thresholds'])>=1; print('thresholds.json OK:', len(d['thresholds']), 'AOIs')"
+          python -c "import json; json.load(open('config/aoi_points.geojson')); print('aoi_points.geojson OK')"
+          python -c "import json; m=json.load(open('models/model_meta.json')); assert set(['IN_CH','LOOKBACK','BASE_CH'])<=set(m); print('model_meta.json OK')"

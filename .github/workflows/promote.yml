@@ -1,0 +1,33 @@
+name: Promote shoreline predictions to production
+
+on:
+  schedule:
+    - cron: "0 4 * * *"  # 04:00 UTC daily; no-op unless a new eligible run exists
+  workflow_dispatch: {}
+
+env:
+  SANITY_DATASET_PRODUCTION: production
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Promote latest valid run (R2 -> Sanity production)
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_ACCESS_KEY_SECRET: ${{ secrets.R2_ACCESS_KEY_SECRET }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+          SANITY_DATASET: ${{ env.SANITY_DATASET_PRODUCTION }}
+          SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
+        run: python -m src.pipeline_promote

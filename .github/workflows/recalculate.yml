@@ -2,12 +2,18 @@ name: Recalculate shoreline predictions
 
 on:
   schedule:
-    - cron: "0 3 1 * *"  # 03:00 UTC on the 1st of each month
+    - cron: "0 3 1 */4 *"  # 03:00 UTC on the 1st of Jan/May/Sep (every 4 months)
   workflow_dispatch: {}
 
 env:
   GEE_PROJECT: gen-lang-client-0412358476
   RUN_DIR: data/interim/run_${{ github.run_id }}
+  # Bump this (and cut a new GitHub Release with that tag, containing
+  # checkpoint.pth + model_meta.json) to promote a newly trained model to
+  # production -- see claude_result15.md for the notebook-side export cell
+  # and the "Dua lifecycle" note in the architecture plan for why this is a
+  # tag/variable, not a hardcoded model shape in the pipeline code.
+  MODEL_RELEASE_TAG: model-v1
 
 jobs:
   recalculate:
@@ -22,32 +28,38 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Fetch latest composite (Track A + B input)
+      - name: Download model checkpoint + meta from GitHub Release
+        run: |
+          mkdir -p models
+          gh release download "$MODEL_RELEASE_TAG" \
+            --pattern 'checkpoint.pth' --pattern 'model_meta.json' \
+            --dir models --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Run pipeline (Prefect flow -- fetch -> mask -> infer -> postprocess -> push staging -> upload R2)
         env:
           GEE_SERVICE_ACCOUNT_KEY: ${{ secrets.GEE_SERVICE_ACCOUNT_KEY }}
-        run: python -m src.gee.fetch --out-dir "$RUN_DIR"
-
-      - name: Preprocess -- fixed-threshold mask + rolling history
-        run: python -m src.preprocessing.mask --in-dir "$RUN_DIR" --state-dir data/state
-
-      - name: Track A -- ConvLSTM inference
-        run: python -m src.inference.predict --state-dir data/state --out-dir "$RUN_DIR"
-
-      - name: Postprocess -- Track B transects + combine into GeoJSON/metrics
-        run: python -m src.output.geojson --state-dir data/state --pred-dir "$RUN_DIR" --out-dir "$RUN_DIR"
-
-      - name: Push to Sanity
-        env:
           SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
-          SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
+          SANITY_DATASET: ${{ secrets.SANITY_DATASET_STAGING }}
           SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
-        run: python -m src.output.sanity_push --run-dir "$RUN_DIR"
+          # Optional: only reports to Prefect Cloud if both are set. Leaving
+          # these unset makes the flow run purely ephemeral/local (still
+          # works fine, just no dashboard) -- see architecture plan.
+          PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }}
+          PREFECT_API_URL: ${{ secrets.PREFECT_API_URL }}
+          # Optional: warehouse raw zone. If unset, upload_to_r2 SKIPs cleanly.
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_ACCESS_KEY_SECRET: ${{ secrets.R2_ACCESS_KEY_SECRET }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python -m src.pipeline --run-dir "$RUN_DIR"
 
-      - name: Commit rolling state + run output back to repo
+      - name: Commit rolling state back to repo
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/state "$RUN_DIR"
+          git add data/state
           git diff --cached --quiet || git commit -m "chore: recalculate shoreline predictions ($(date -u +%Y-%m-%d))"
           git push
 

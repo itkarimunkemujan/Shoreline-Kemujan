@@ -30,25 +30,22 @@ def load_aoi(config_path: str) -> list[dict]:
         return json.load(f)["features"]
 
 
-def main() -> None:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--aoi-config", default="config/aoi_points.geojson")
-    ap.add_argument("--out-dir", required=True)
-    ap.add_argument("--cloud-max", type=float, default=30)
-    args = ap.parse_args()
-
+def run_fetch(aoi_config: str, out_dir: str, cloud_max: float = 30) -> dict:
+    """Core fetch logic, callable directly (Prefect task wraps this) as well
+    as via the CLI `main()` below. Returns the run_meta dict that also gets
+    written to run_meta.json."""
     initialize_ee(GEE_PROJECT)
-    aoi_features = load_aoi(args.aoi_config)
+    aoi_features = load_aoi(aoi_config)
     union_bbox = get_union_bbox(aoi_features)
 
     end = datetime.utcnow()
     start = end - timedelta(days=LOOKBACK_DAYS)
     composite, n_scene = fetch_sentinel_composite(
-        union_bbox, start.strftime("%Y-%m-%d"), end.strftime("%Y-%m-%d"), args.cloud_max)
+        union_bbox, start.strftime("%Y-%m-%d"), end.strftime("%Y-%m-%d"), cloud_max)
     if composite is None:
-        raise RuntimeError(f"No Sentinel-2 scenes found in the last {LOOKBACK_DAYS} days (cloud_max={args.cloud_max})")
+        raise RuntimeError(f"No Sentinel-2 scenes found in the last {LOOKBACK_DAYS} days (cloud_max={cloud_max})")
 
-    os.makedirs(args.out_dir, exist_ok=True)
+    os.makedirs(out_dir, exist_ok=True)
     run_meta = {"run_utc": datetime.utcnow().isoformat(), "n_scene": n_scene,
                 "window_start": start.strftime("%Y-%m-%d"), "window_end": end.strftime("%Y-%m-%d"),
                 "aoi": []}
@@ -56,15 +53,30 @@ def main() -> None:
     for feature in aoi_features:
         name = feature["properties"]["name"]
         lon, lat = feature["geometry"]["coordinates"]
-        region = ee.Geometry.Point([lon, lat]).buffer(PATCH_SIZE * SCALE_M / 2).bounds()
-        mndwi = download_patch(composite, "MNDWI", region, SCALE_M)
-        np.save(os.path.join(args.out_dir, f"{name}_mndwi.npy"), mndwi)
-        run_meta["aoi"].append({"name": name, "lon": lon, "lat": lat})
-        print(f"[{name}] MNDWI patch OK -- shape {mndwi.shape}")
+        try:
+            region = ee.Geometry.Point([lon, lat]).buffer(PATCH_SIZE * SCALE_M / 2).bounds()
+            mndwi = download_patch(composite, "MNDWI", region, SCALE_M)
+            np.save(os.path.join(out_dir, f"{name}_mndwi.npy"), mndwi)
+            run_meta["aoi"].append({"name": name, "lon": lon, "lat": lat})
+            print(f"[{name}] MNDWI patch OK -- shape {mndwi.shape}")
+        except Exception as exc:  # noqa: BLE001 -- one bad AOI shouldn't sink the whole run
+            print(f"[{name}] SKIP -- unexpected error: {exc}")
+            continue
 
-    with open(os.path.join(args.out_dir, "run_meta.json"), "w") as f:
+    with open(os.path.join(out_dir, "run_meta.json"), "w") as f:
         json.dump(run_meta, f, indent=2)
-    print(f"Done: {len(aoi_features)} AOI, {n_scene} scene(s), -> {args.out_dir}")
+    print(f"Done: {len(aoi_features)} AOI, {n_scene} scene(s), -> {out_dir}")
+    return run_meta
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--aoi-config", default="config/aoi_points.geojson")
+    ap.add_argument("--out-dir", required=True)
+    ap.add_argument("--cloud-max", type=float, default=30)
+    args = ap.parse_args()
+
+    run_fetch(args.aoi_config, args.out_dir, args.cloud_max)
 
 
 if __name__ == "__main__":
