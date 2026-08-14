@@ -33,6 +33,7 @@ import hashlib
 import json
 import os
 import sys
+import tempfile
 from datetime import datetime, timezone
 
 import duckdb
@@ -110,9 +111,16 @@ def _write_json_to_parquet(duck: duckdb.DuckDBPyConnection, path: str, out_key: 
         else:
             rows.append({**props, "n_coords": 0, "first_lon": None, "first_lat": None,
                          "last_lon": None, "last_lat": None})
-    duck.register("tbl", rows)
-    duck.execute(f"COPY (SELECT * FROM tbl) TO '{out_key}' (FORMAT PARQUET)")
-    duck.unregister("tbl")
+    fd, tmp = tempfile.mkstemp(suffix=".json")
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            json.dump(rows, f)
+        duck.execute(
+            f"COPY (SELECT * FROM read_json_auto('{tmp.replace(os.sep, '/')}')) "
+            f"TO '{out_key}' (FORMAT PARQUET)"
+        )
+    finally:
+        os.unlink(tmp)
     return out_key
 
 
