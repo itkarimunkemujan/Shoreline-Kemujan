@@ -37,6 +37,7 @@ from datetime import datetime, timezone
 import s3fs
 
 from src.output.sanity_push import run_sanity_push
+from src.output.validate_run import validate_run
 
 REQUIRED_ENV = ["R2_ACCOUNT_ID", "R2_ACCESS_KEY_ID", "R2_ACCESS_KEY_SECRET", "R2_BUCKET"]
 MIN_AGE_HOURS = 24
@@ -143,8 +144,8 @@ def run_promote(dry_run: bool = False) -> dict:
         print("--dry-run: no push performed.")
         return {"promoted": False, "dry_run": True, "run_id": run_id}
 
-    # download the selected run into a temp dir, then push with the SAME
-    # logic as the staging push, just pointed at the production dataset.
+    # download the selected run into a temp dir, then run the output-contract
+    # validation BEFORE pushing to production. Violations abort the promote.
     with tempfile.TemporaryDirectory() as tmp:
         for name in ["shoreline_current.geojson", "shoreline_predicted.geojson",
                      "transects.geojson", "metrics.json", "forecast_docs.json"]:
@@ -153,6 +154,14 @@ def run_promote(dry_run: bool = False) -> dict:
                 continue
             with fs.open(f"{bucket}/{key}") as src, open(os.path.join(tmp, name), "wb") as dst:
                 dst.write(src.read())
+
+        violations = validate_run(tmp)
+        if violations:
+            print(f"PROMOTE ABORTED: run {run_id} failed validation ({len(violations)} issue(s)):")
+            for msg in violations:
+                print(f"  - {msg}")
+            return {"promoted": False, "run_id": run_id, "reason": "validation failed", "violations": violations}
+
         push = run_sanity_push(tmp, dataset=PRODUCTION_DATASET)
 
     if push.get("pushed"):

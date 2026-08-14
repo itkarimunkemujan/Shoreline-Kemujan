@@ -50,8 +50,9 @@ flowchart TD
     subgraph PROM["GitHub Actions — promote.yml\n(cron harian, no-op jika tidak ada run baru)"]
         PFLOW["src/pipeline_promote.py\nDuckDB baca manifest R2"]
         PVAL["validasi: file lengkap,\nmetrics non-null, >=1 hari,\n> last_promoted"]
+        PCONTRACT["src/output/validate_run.py\nkontrak output: schema drift,\nbounds, null, referential,\nfreshness"]
         PPUSH["push ke Sanity production"]
-        PFLOW --> PVAL --> PPUSH
+        PFLOW --> PVAL --> PCONTRACT --> PPUSH
     end
 
     SANITY_STAG["Sanity dataset development"]
@@ -81,7 +82,7 @@ flowchart TD
 | Track B (baseline) | GitHub Actions (cron yang sama) | `lrr_kalman.py`: NSM/EPR/LRR per transect — guaranteed floor |
 | Push staging | GitHub Actions (cron yang sama) | `push_to_sanity` → dataset Sanity `development` |
 | Warehouse | Cloudflare R2 (opsional) | Raw zone immutable: GeoJSON + Parquet + manifest, queryable via DuckDB |
-| Promote | GitHub Actions (`promote.yml`, cron harian) | Validasi run terbaru ≥1 hari & > `last_promoted` → push dataset `production` |
+| Promote | GitHub Actions (`promote.yml`, cron harian) | Validasi run terbaru ≥1 hari & > `last_promoted` + **output-contract check** (`validate_run.py`) → push dataset `production` |
 | Model versioning | GitHub Release (tag `model-vN`) | `checkpoint.pth` + `model_meta.json`; pipeline baca dinamis dari `MODEL_RELEASE_TAG` |
 | Monitoring | Prefect Cloud (opsional, $0) | Flow ephemeral lapor via HTTP; tanpa `PREFECT_API_KEY` tetap jalan normal |
 | Training/retrain | Manual — Kaggle GPU / Colab | Dipicu manual (bukan cron), setelah Issue muncul atau evaluasi berkala |
@@ -96,8 +97,16 @@ flowchart TD
    queryable via DuckDB (Parquet) — arsip immutable + audit trail.
 3. **Promote**: `promote.yml` (cron harian) membaca manifest R2, mengambil run
    terbaru yang valid (file lengkap, metrics non-null, umur run ≥ 1 hari, dan
-   lebih baru dari `state/last_promoted.json` di R2), lalu push ke dataset
-   `production`. Run yang sama tidak pernah di-promote dua kali.
+   lebih baru dari `state/last_promoted.json` di R2). Run terpilih melewati
+   **output-contract validation** (`validate_run.py`: schema drift, bounds fisik,
+   null gate, referential integrity ke `config/aoi_points.geojson`, freshness)
+   sebelum push ke dataset `production`. Ada pelanggaran → promote dibatalkan.
+   Run yang sama tidak pernah di-promote dua kali.
+
+> **Scope validation**: hanya output pipeline (5 file terstruktur dari `geojson.py`)
+> yang divalidasi. GEE upstream (raster mentah) sengaja tidak — data di sana
+> unstructured, dan batas fisik (threshold) sudah dijaga di preprocessing
+> (`mask.py`, `thresholds.json`). Kontrak dimulai di titik data menjadi terstruktur.
 
 ## Strategi retrain
 

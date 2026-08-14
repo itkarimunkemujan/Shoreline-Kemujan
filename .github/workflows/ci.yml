@@ -30,6 +30,7 @@ jobs:
           python -c "import src.output.upload_r2; print('src.output.upload_r2 OK')"
           python -c "import src.output.sanity_push; print('src.output.sanity_push OK')"
           python -c "import src.output.geojson; print('src.output.geojson OK')"
+          python -c "import src.output.validate_run; print('src.output.validate_run OK')"
 
       - name: Validate configs parse
         run: |
@@ -39,3 +40,7 @@ jobs:
           # are gitignored and delivered via GitHub Release (model-vN), so this
           # file never exists in a checkout. Its schema is validated at pipeline
           # runtime (recalculate.yml downloads it, predict.py reads it).
+
+      - name: Output-contract validation (mini e2e)
+        run: |
+          python -m unittest discover tests -v

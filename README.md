@@ -109,8 +109,9 @@ flowchart TD
     subgraph PROMOTER["Promote — GitHub Actions (promote.yml, cron harian)"]
         PFLOW["src/pipeline_promote.py\nDuckDB baca manifest R2"]
         PVAL["validasi: file lengkap,\nmetrics non-null, >=1 hari,\n> last_promoted"]
+        PCONTRACT["src/output/validate_run.py\nkontrak output: schema drift,\nbounds, null, referential,\nfreshness"]
         PPUSH["push ke Sanity\nPRODUCTION"]
-        PFLOW --> PVAL --> PPUSH
+        PFLOW --> PVAL --> PCONTRACT --> PPUSH
     end
 
     subgraph WEB["repo tourism-kemujan (terpisah)"]
@@ -170,7 +171,22 @@ python -m src.output.upload_r2 --run-dir <path>
 
 # Promote run terbaru yang valid dari R2 ke Sanity production (cron harian di promote.yml)
 python -m src.pipeline_promote --dry-run   # tanpa --dry-run: benar-benar push ke production
+
+# Validasi kontrak output (schema drift, bounds, freshness) untuk satu run
+python -m src.output.validate_run --run-dir <run_dir>
+python -m src.output.validate_run --run-dir <run_dir> --bounds-json bounds.json   # override batas default
+
+# Mini e2e test output-contract (stdlib unittest, zero dep tambahan)
+python -m unittest discover tests -v
 ```
+
+> **Output-contract validation** (`src/output/validate_run.py`) memvalidasi 5 file terstruktur
+> hasil pipeline (GeoJSON + metrics.json + forecast_docs.json) terhadap kontrak schema, batas
+> fisik (EPR ±50 m/yr, NSM ≤ 3700 m, nTransects ≤ 40, AOI buffer 1500 m), null/completeness,
+> referential integrity ke `config/aoi_points.geojson`, dan freshness (`run_utc`). Dipasang
+> sebagai **gate sebelum push production** di `pipeline_promote.py`. GEE upstream (raster mentah)
+> sengaja TIDAK divalidasi — data di sana unstructured; kontrak dimulai di titik data menjadi
+> terstruktur (output `geojson.py`). Batas default bisa dituning via `--bounds-json`.
 
 > Command lama (`scripts/fetch_composite.py`, `preprocess.py`, `infer_trackA.py`,
 > `transect_trackB.py`, `postprocess.py`) sudah tidak dipakai — struktur pindah ke `src/`
@@ -217,11 +233,13 @@ shoreline-kemujan-monitoring/
 │   ├── analysis/                 metrics.py, spatial.py, transect.py, utils.py
 │   ├── model/                    convlstm.py, dataset.py, evaluate.py, train.py
 │   ├── pipeline_promote.py       # promote run valid dari R2 -> Sanity production
-│   └── output/                   geojson.py, sanity_push.py, upload_r2.py
+│   └── output/                   geojson.py, sanity_push.py, upload_r2.py, validate_run.py
 ├── config/
 │   ├── aoi_points.geojson      # 9 AOI (8 dipakai training) — dipakai src/pipeline.py
 │   ├── thresholds.json         # per-AOI mask threshold — sudah terisi 9 AOI
 │   └── params.yaml             # placeholder DVC (0 byte, belum dipakai)
+├── tests/
+│   └── test_validate_run.py    # mini e2e output-contract (unittest, zero dep)
 ├── data/                        # state/ (rolling, termasuk lrr_baseline.json) dibuat saat run
 ├── models/                      # checkpoint + model_meta.json (via GitHub Release di CI)
 ├── notebooks/                   # training, manual di Colab/Kaggle
@@ -240,8 +258,10 @@ shoreline-kemujan-monitoring/
 | 7 | `src/output/sanity_push.py` | Push `abrasionDataset` + `shorelineForecast` ke Sanity (staging/production) |
 | 8 | `src/output/upload_r2.py` | Upload run output ke R2 warehouse (GeoJSON + Parquet + manifest) |
 | 9 | `src/pipeline_promote.py` | Promote run valid dari R2 → Sanity production (cron harian) |
-| 10 | `config/aoi_points.geojson` | Daftar 9 AOI (8 dipakai training) |
-| 11 | `config/thresholds.json` | Threshold mask per AOI — sudah terisi 9 AOI |
+| 10 | `src/output/validate_run.py` | Output-contract validation — gate sebelum push production |
+| 11 | `tests/test_validate_run.py` | Mini e2e test output-contract (unittest, zero dep) |
+| 12 | `config/aoi_points.geojson` | Daftar 9 AOI (8 dipakai training) |
+| 13 | `config/thresholds.json` | Threshold mask per AOI — sudah terisi 9 AOI |
 
 ### Deployment
 
@@ -257,8 +277,11 @@ Alur staging → production:
    (Parquet) — arsip immutable + audit trail.
 3. **Promote**: `promote.yml` (cron harian) membaca manifest R2 via DuckDB, mengambil run
    terbaru yang valid (file lengkap, metrics non-null, umur run ≥ 1 hari, dan lebih baru dari
-   `state/last_promoted.json` di R2), lalu push ke dataset **`production`**
-   (`SANITY_DATASET_PRODUCTION`). Run yang sama tidak pernah di-promote dua kali.
+   `state/last_promoted.json` di R2). Run terpilih lalu melewati **output-contract validation**
+   (`validate_run.py`: schema drift, bounds fisik, null gate, referential integrity, freshness)
+   sebelum di-push ke dataset **`production`** (`SANITY_DATASET_PRODUCTION`). Kalau ada
+   pelanggaran, promote dibatalkan — data rusak tidak pernah sampai ke dashboard asli.
+   Run yang sama tidak pernah di-promote dua kali.
 
 Repo ini tidak deploy apa pun secara langsung — tidak ada infra cloud tambahan di luar
 GitHub Actions + bucket R2.
